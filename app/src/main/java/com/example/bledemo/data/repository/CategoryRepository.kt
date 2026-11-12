@@ -20,7 +20,10 @@ class CategoryRepositoryImpl(
     override suspend fun fetchCategories(token: String?): Result<CategoryListResponseModel> =
         withContext(Dispatchers.IO) {
             try {
-                val response = apiService.getCategories(token = token)
+                val authHeader = token?.takeIf { it.isNotBlank() }?.let {
+                    if (it.startsWith("Bearer ")) it else "Bearer $it"
+                }
+                val response = apiService.getCategories(token = authHeader)
                 if (response.isSuccessful && response.body() != null) {
                     Result.success(response.body()!!)
                 } else {
@@ -38,4 +41,3 @@ class CategoryRepositoryImpl(
             }
         }
 }
-

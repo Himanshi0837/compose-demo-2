@@ -13,7 +13,7 @@ private val AppColorScheme = lightColorScheme(
 )
 
 @Composable
-fun BLEDemoTheme(
+fun AppTheme(
     content: @Composable () -> Unit
 ) {
     MaterialTheme(
@@ -21,4 +21,11 @@ fun BLEDemoTheme(
         typography = AppTypography,
         content = content
     )
+}
+
+@Composable
+fun BLEDemoTheme(
+    content: @Composable () -> Unit
+) {
+    AppTheme(content = content)
 }

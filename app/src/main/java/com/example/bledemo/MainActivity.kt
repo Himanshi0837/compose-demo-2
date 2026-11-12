@@ -21,7 +21,7 @@ import com.example.bledemo.ui.components.AppBottomBar
 import com.example.bledemo.ui.navigation.AppNavGraph
 import com.example.bledemo.ui.navigation.AppRoutes
 import com.example.bledemo.ui.screens.splash.SplashScreen
-import com.example.bledemo.ui.theme.BLEDemoTheme
+import com.example.bledemo.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
 
@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
         )
 
         setContent {
-            BLEDemoTheme {
+            AppTheme {
                 MainApp()
             }
         }
@@ -59,9 +59,8 @@ fun MainApp() {
 
         val bottomBarRoutes = listOf(
             AppRoutes.HOME,
-            AppRoutes.SCAN,
-            AppRoutes.MY_DEVICES,
-            AppRoutes.SETTINGS
+            AppRoutes.FAVOURITE,
+            AppRoutes.DRAWER
         )
         val shouldShowBottomBar = currentRoute in bottomBarRoutes
 

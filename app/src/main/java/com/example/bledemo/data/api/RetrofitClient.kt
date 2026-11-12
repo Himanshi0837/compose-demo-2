@@ -9,11 +9,14 @@ import java.util.concurrent.TimeUnit
 object RetrofitClient {
     private const val BASE_URL = "https://staging.blehealthplus.com/reelcache/public/api/v1/"
 
+    const val DEFAULT_TOKEN =
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYmxlaGVhbHRocGx1cy5jb20vcmVlbGNhY2hlL3B1YmxpYy9hcGkvdjEvbG9naW4iLCJpYXQiOjE3OTM4NzMzMDQsImV4cCI6MTc5NjQ2NTMwNCwibmJmIjoxNzkzODczMzA0LCJqdGkiOiJLMVJUZEhvaGJRU1hqbkNyIiwic3ViIjoiMjkiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3IiwidG9rZW5fdmVyc2lvbiI6NTB9.8EyKObJ1aQPxC9uUxVOMCObGzJUpEH5B4mXiqnOMRG4"
+
     /**
      * Authorization token used for authenticated endpoints.
-     * Can be configured dynamically.
+     * Initialized with the default user token.
      */
-    var authToken: String? = null
+    var authToken: String? = DEFAULT_TOKEN
 
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
@@ -45,4 +48,3 @@ object RetrofitClient {
             .create(ApiService::class.java)
     }
 }
-

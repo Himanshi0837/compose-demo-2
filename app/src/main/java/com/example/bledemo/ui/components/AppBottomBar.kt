@@ -1,13 +1,9 @@
 package com.example.bledemo.ui.components
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.BluetoothSearching
 import androidx.compose.material.icons.filled.Dehaze
-import androidx.compose.material.icons.filled.DensityMedium
-import androidx.compose.material.icons.filled.Devices
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -43,13 +39,12 @@ fun AppBottomBar(
         BottomNavItem(
             title = "Favourite",
             icon = Icons.Default.FavoriteBorder,
-            route = AppRoutes.SCAN
+            route = AppRoutes.FAVOURITE
         ),
-
         BottomNavItem(
             title = "Drawer",
             icon = Icons.Default.Dehaze,
-            route = AppRoutes.SETTINGS
+            route = AppRoutes.DRAWER
         )
     )
 
@@ -78,9 +73,9 @@ fun AppBottomBar(
                     Text(text = item.title)
                 },
                 colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = PrimaryBlue,
-                    selectedTextColor = PrimaryBlue,
-                    indicatorColor = PrimaryBlue.copy(alpha = 0.12f),
+                    selectedIconColor = AccentBlue,
+                    selectedTextColor = AccentBlue,
+                    indicatorColor = AccentBlue.copy(alpha = 0.12f),
                     unselectedIconColor = SecondaryText,
                     unselectedTextColor = SecondaryText
                 )

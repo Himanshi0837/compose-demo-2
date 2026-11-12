@@ -54,6 +54,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -94,22 +95,6 @@ fun HomeScreen(
                         color = Color.White
                     )
                 },
-                actions = {
-                    IconButton(onClick = { showTokenDialog = true }) {
-                        Icon(
-                            imageVector = Icons.Default.Key,
-                            contentDescription = "Set Auth Token",
-                            tint = Color.White
-                        )
-                    }
-                    IconButton(onClick = { viewModel.loadCategories() }) {
-                        Icon(
-                            imageVector = Icons.Default.Refresh,
-                            contentDescription = "Refresh",
-                            tint = Color.White
-                        )
-                    }
-                },
                 windowInsets = WindowInsets(0),
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = PrimaryBlue,
@@ -123,7 +108,11 @@ fun HomeScreen(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding)
+                .padding(
+                    start = innerPadding.calculateLeftPadding(LayoutDirection.Ltr),
+                    top = innerPadding.calculateTopPadding(),
+                    end = innerPadding.calculateRightPadding(LayoutDirection.Ltr)
+                )
         ) {
             when (val state = uiState) {
                 is CategoryUiState.Loading -> {
