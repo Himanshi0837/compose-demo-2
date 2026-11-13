@@ -95,7 +95,6 @@ fun HomeScreen(
                         color = Color.White
                     )
                 },
-                windowInsets = WindowInsets(0),
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = PrimaryBlue,
                     titleContentColor = Color.White,
@@ -108,11 +107,7 @@ fun HomeScreen(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(
-                    start = innerPadding.calculateLeftPadding(LayoutDirection.Ltr),
-                    top = innerPadding.calculateTopPadding(),
-                    end = innerPadding.calculateRightPadding(LayoutDirection.Ltr)
-                )
+                .padding(innerPadding)
         ) {
             when (val state = uiState) {
                 is CategoryUiState.Loading -> {

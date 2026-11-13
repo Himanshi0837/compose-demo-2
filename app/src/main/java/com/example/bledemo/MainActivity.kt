@@ -29,8 +29,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         enableEdgeToEdge(
-            statusBarStyle = SystemBarStyle.Companion.dark(
-                android.graphics.Color.rgb(11, 59, 130)
+            statusBarStyle = SystemBarStyle.auto(
+                android.graphics.Color.TRANSPARENT,
+                android.graphics.Color.TRANSPARENT
+            ),
+            navigationBarStyle = SystemBarStyle.auto(
+                android.graphics.Color.TRANSPARENT,
+                android.graphics.Color.TRANSPARENT
             )
         )
 
@@ -66,6 +71,8 @@ fun MainApp() {
 
         Scaffold(
             modifier = Modifier.fillMaxSize(),
+            contentWindowInsets = androidx.compose.foundation.layout.WindowInsets(0, 0, 0, 0),
+            containerColor = androidx.compose.ui.graphics.Color(0xFFF3F7FA),
             bottomBar = {
                 if (shouldShowBottomBar) {
                     AppBottomBar(
@@ -86,7 +93,7 @@ fun MainApp() {
             AppNavGraph(
                 navController = navController,
                 startDestination = AppRoutes.HOME,
-                modifier = Modifier.padding(innerPadding)
+                modifier = Modifier.padding(bottom = innerPadding.calculateBottomPadding())
             )
         }
     }

@@ -10,7 +10,7 @@ object RetrofitClient {
     private const val BASE_URL = "https://staging.blehealthplus.com/reelcache/public/api/v1/"
 
     const val DEFAULT_TOKEN =
-        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYmxlaGVhbHRocGx1cy5jb20vcmVlbGNhY2hlL3B1YmxpYy9hcGkvdjEvbG9naW4iLCJpYXQiOjE3OTM4NzMzMDQsImV4cCI6MTc5NjQ2NTMwNCwibmJmIjoxNzkzODczMzA0LCJqdGkiOiJLMVJUZEhvaGJRU1hqbkNyIiwic3ViIjoiMjkiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3IiwidG9rZW5fdmVyc2lvbiI6NTB9.8EyKObJ1aQPxC9uUxVOMCObGzJUpEH5B4mXiqnOMRG4"
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0YWdpbmcuYmxlaGVhbHRocGx1cy5jb20vcmVlbGNhY2hlL3B1YmxpYy9hcGkvdjEvbG9naW4iLCJpYXQiOjE3OTQ1NDc1NTYsImV4cCI6MTc5NzEzOTU1NiwibmJmIjoxNzk0NTQ3NTU2LCJqdGkiOiJVQkNOdU5iUGtmWDJOTUdqIiwic3ViIjoiMjkiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3IiwidG9rZW5fdmVyc2lvbiI6NTF9.CxmeprWiOyoHSg9Po1GzTScHiKD7DdA0YYPNhU7v-g4"
 
     /**
      * Authorization token used for authenticated endpoints.

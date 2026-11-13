@@ -1,22 +1,37 @@
 package com.example.bledemo.ui.components
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Dehaze
-import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.outlined.FavoriteBorder
+import androidx.compose.material.icons.outlined.GridView
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemDefaults
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.unit.dp
 import com.example.bledemo.ui.navigation.AppRoutes
-import com.example.bledemo.ui.theme.AccentBlue
-import com.example.bledemo.ui.theme.CardBackground
 import com.example.bledemo.ui.theme.PrimaryBlue
-import com.example.bledemo.ui.theme.SecondaryText
+
+private val SelectedColor = PrimaryBlue
+private val UnselectedIconColor = Color(0xFF667085)
+private val BarBorderColor = Color(0xFFEAECF0)
 
 data class BottomNavItem(
     val title: String,
@@ -33,12 +48,12 @@ fun AppBottomBar(
     val items = listOf(
         BottomNavItem(
             title = "Home",
-            icon = Icons.Default.Home,
+            icon = Icons.Outlined.GridView,
             route = AppRoutes.HOME
         ),
         BottomNavItem(
             title = "Favourite",
-            icon = Icons.Default.FavoriteBorder,
+            icon = Icons.Outlined.FavoriteBorder,
             route = AppRoutes.FAVOURITE
         ),
         BottomNavItem(
@@ -48,38 +63,53 @@ fun AppBottomBar(
         )
     )
 
-    NavigationBar(
-        modifier = modifier,
-        containerColor = CardBackground,
-        contentColor = PrimaryBlue
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .navigationBarsPadding()
+            .padding(horizontal = 24.dp, vertical = 10.dp),
+        contentAlignment = Alignment.Center
     ) {
-        items.forEach { item ->
-            val isSelected = currentRoute == item.route
+        Card(
+            shape = RoundedCornerShape(36.dp),
+            colors = CardDefaults.cardColors(containerColor = Color.White),
+            border = BorderStroke(1.dp, BarBorderColor),
+            elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 8.dp),
+                horizontalArrangement = Arrangement.SpaceAround,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                items.forEach { item ->
+                    val isSelected = currentRoute == item.route
 
-            NavigationBarItem(
-                selected = isSelected,
-                onClick = {
-                    if (!isSelected) {
-                        onNavigateToRoute(item.route)
+                    Box(
+                        modifier = Modifier
+                            .size(46.dp)
+                            .clip(CircleShape)
+                            .then(
+                                if (isSelected) Modifier.background(SelectedColor)
+                                else Modifier
+                            )
+                            .clickable {
+                                if (!isSelected) {
+                                    onNavigateToRoute(item.route)
+                                }
+                            },
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            imageVector = item.icon,
+                            contentDescription = item.title,
+                            tint = if (isSelected) Color.White else UnselectedIconColor,
+                            modifier = Modifier.size(24.dp)
+                        )
                     }
-                },
-                icon = {
-                    Icon(
-                        imageVector = item.icon,
-                        contentDescription = item.title
-                    )
-                },
-                label = {
-                    Text(text = item.title)
-                },
-                colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = AccentBlue,
-                    selectedTextColor = AccentBlue,
-                    indicatorColor = AccentBlue.copy(alpha = 0.12f),
-                    unselectedIconColor = SecondaryText,
-                    unselectedTextColor = SecondaryText
-                )
-            )
+                }
+            }
         }
     }
 }
